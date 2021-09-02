@@ -1,0 +1,25 @@
+# Abrir consola shell
+py manage.py shell
+# Importar modelos desde la app creada
+>>> from users_app.models import *
+# Creando 3 usuarios
+>>> Usuario.objects.create(first_name="Alex", last_name="Urtubia", email="alex@email.com", age=28) 
+>>> Usuario.objects.create(first_name="Victoria", last_name="Ulloa", email="vicky@email.com", age=19) 
+>>> Usuario.objects.create(first_name="Catalina", last_name="Contreras", email="cata@email.com", age=24)
+# Regresar todos los usuarios
+>>> Usuario.objects.all().values()
+# Regresar el último usuario
+>>> Usuario.objects.last()
+# Regresar el primer usuario
+>>> Usuario.objects.first()
+# Consulta: Cambie el usuario con id = 3 para que su apellido sea Pancakes
+>>> usuario_update = Usuario.objects.get(id=3) 
+>>> usuario_update.last_name = "Pancakes"
+>>> usuario_update.save()
+# Consulta: Eliminar el usuario con id = 2 de la base de datos
+>>> usuario_eliminar = Usuario.objects.get(id=2) 
+>>> usuario_eliminar.delete()
+# Consulta: Obtenga todos los usuarios, ordenados por su nombre
+>>> Usuario.objects.all().order_by("first_name")
+# BONUS Query: obtén todos los usuarios, ordenados por su nombre en orden descendente
+>>> Usuario.objects.all().order_by("-first_name")
